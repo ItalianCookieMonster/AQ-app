@@ -7,7 +7,7 @@ const Homepage = () => {
             <h3 className="text-lg font-bold mb-5">Ask to AQ to do one of these tasks...</h3>
             <Questions />
 
-            <CustomQuestion />
+            <CustomQuestion title="Or type here for more informations." />
         </>
     )
 }

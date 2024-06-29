@@ -1,12 +1,12 @@
 
 import { createBrowserRouter } from 'react-router-dom';
 
-import Questions from '@/pages/Questions/Questions';
-import Form from '@/pages/Form/Form';
+
 import Welcome from '@/pages/Welcome/Welcome';
 import Homepage from '@/pages/Hompage/Homepage';
 import Layout from '../layout/Layout';
 import Layout2 from '../layout/Layout2';
+import ProfileForm from '@/pages/ProfileForm/ProfileForm';
 
 const router = createBrowserRouter([
     {
@@ -19,12 +19,9 @@ const router = createBrowserRouter([
             },
             {
                 path: '/form',
-                element: <Form/>
+                element: <ProfileForm/>
             },
-            {
-                path: '/questions',
-                element: <Questions />
-            }
+            
         ]
     },
     {
@@ -34,7 +31,7 @@ const router = createBrowserRouter([
             {
                 path: '/home',
                 element: <Homepage />
-            }
+            },
         ]
     },
 ])

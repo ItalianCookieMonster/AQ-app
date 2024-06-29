@@ -1,42 +1,83 @@
+import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getAirQualityInfo } from "../../api/getAirQualityInfo";
+import { enhanceAirOutput } from "../../utils/tansformOutput";
 import Loading from "@/components/Loading/Loading";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 
 const Task1 = () => {
+  const [loading, setLoading] = useState(true);
+  const [userData, setUserData] = useState({});
+  const [output, setOutput] = useState("");
+  const [isGood, setIsGood] = useState(undefined);
 
-    const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const currentUserData = localStorage.getItem("user-data");
+    setUserData(currentUserData ? JSON.parse(currentUserData) : {});
+  }, []);
 
+  const {
+    data: airQualityInfoData,
+    // error: airQualityInfoError,
+    // isFetching: isFetchingairQualityInfo,
+    // refetch: refetchairQualityInfo,
+  } = useQuery({
+    queryKey: ["airQualityInfo", userData],
+    queryFn: async () => {
+      if (userData) {
+        // const { city } = userData;
 
-    return (
-        loading ?
-            <Loading />
-            :
-            <div className="flex flex-col justify-center items-center">
+        const result = await getAirQualityInfo({
+          city: "Barcelona", // TODO: pending get city!!!!!
+          userParams: userData,
+          question: "goForARun",
+        });
+        return result;
+      }
+    },
+    enabled: !!userData,
+    retry: 2,
+  });
 
-                <h1 className="text-2xl font-bold text-center mb-5 text-primary">Message</h1>
-                <div className="flex flex-col md:flex-row gap-3 items-center lg:max-w-[70vw]">
-                    <img src="/images/ok_run.png" alt="image of a guy running" className="max-h-[300px] md:h-[500px]" />
-                    <p className="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                        optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
-                        obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
-                        nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
-                        tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
-                        quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos
-                        sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
-                        recusandae alias error harum maxime adipisci amet laborum
-                    </p>
+  useEffect(() => {
+    if (airQualityInfoData && airQualityInfoData.questionOutput) {
+      const { output, isGood } = airQualityInfoData.questionOutput;
 
-                </div>
+      const enhancedOutput = enhanceAirOutput(output);
 
-                <Link to={'/home'}>
-                    <Button className="w-[50vw] mt-8">
-                        Go Back
-                    </Button>
-                </Link>
-            </div>
-    )
-}
-export default Task1
+      setOutput(enhancedOutput);
+      setIsGood(isGood);
+
+      setLoading(false);
+    }
+  }, [airQualityInfoData]);
+
+  return loading ? (
+    <Loading />
+  ) : (
+    <div className="flex flex-col justify-center items-center">
+      <h1 className="text-2xl font-bold text-center mb-5 text-primary">
+        Message
+      </h1>
+      <div className="flex flex-col md:flex-row gap-3 items-center lg:max-w-[70vw]">
+        <img
+          src="/images/ok_run.png"
+          alt="image of a guy running"
+          className="max-h-[300px] md:h-[500px]"
+        />
+        <p className="text-center">{output}</p>
+      </div>
+      {isGood ? (
+        <p className="text-center text-green-500">Good</p>
+      ) : (
+        <p className="text-center text-red-500">Bad</p>
+      )}
+
+      <Link to={"/home"}>
+        <Button className="w-[50vw] mt-8">Go Back</Button>
+      </Link>
+    </div>
+  );
+};
+export default Task1;

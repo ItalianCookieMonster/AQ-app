@@ -1,17 +1,24 @@
-import { Button } from "../../components/ui/button"
-import { Link } from "react-router-dom"
-
-
+import { Button } from "../../components/ui/button";
+import { Link } from "react-router-dom";
 
 const Welcome = () => {
-    return (
-        <div className="text-center w-full flex flex-col gap-7">
-            <h1 className="font-bold text-2xl ">Welcome to AQ</h1>
-            <p className="font-semibold">First we need to ask you some questions</p>
-            <Link to={'/form'}> <Button>{`Let's go!`}</Button> </Link>
+  // check if user info is saved in local storage
+  const userData = localStorage.getItem("user-data");
 
+  const nextStepCopy = userData
+    ? "Let's make the world a better place"
+    : "First we need to ask you some questions";
 
-        </div>
-    )
-}
-export default Welcome
+  const linkTo = userData ? "/auth/home" : "/form";
+
+  return (
+    <div className="text-center w-full flex flex-col gap-7">
+      <h1 className="font-bold text-2xl ">Welcome to AQ</h1>
+      <p className="font-semibold">{nextStepCopy}</p>
+      <Link to={linkTo}>
+        <Button>{`Let's go!`}</Button>
+      </Link>
+    </div>
+  );
+};
+export default Welcome;

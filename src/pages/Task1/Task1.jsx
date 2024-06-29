@@ -15,7 +15,7 @@ const Task1 = () => {
             <div className="flex flex-col justify-center items-center">
 
                 <h1 className="text-2xl font-bold text-center mb-5 text-primary">Message</h1>
-                <div className="flex flex-col md:flex-row gap-3 items-center">
+                <div className="flex flex-col md:flex-row gap-3 items-center lg:max-w-[70vw]">
                     <img src="/images/ok_run.png" alt="image of a guy running" className="max-h-[300px] md:h-[500px]" />
                     <p className="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
                         molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum

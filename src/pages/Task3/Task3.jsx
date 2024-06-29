@@ -4,14 +4,17 @@ import { Button } from "@/components/ui/button"
 
 const Task3 = () => {
     return (
-        <div className="w-[80vw]">
+        <div className="w-[80vw] flex flex-col items-center">
             <CustomQuestion title="What are you doing right now?" />
 
+            <div className="h-[300px]">
+
+
+            </div>
 
 
 
-
-            <Link to={'/home'}>
+            <Link to={'/home'} className="justify-self-end">
                 <Button className="w-[50vw] mt-8">
                     Go Back
                 </Button>

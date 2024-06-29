@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 const QuestionCard = ({ question }) => {
     return (
         <Link to={`/auth/${question.link}`}>
-        <Card className="max-w-[300px] flex flex-col lg:h-full">
+        <Card className="w-[80vw] md:max-w-[300px] flex flex-col lg:h-full">
             <CardHeader className="m-3 flex-row items-center gap-2">
                 {
                     question.type === "activity" ?

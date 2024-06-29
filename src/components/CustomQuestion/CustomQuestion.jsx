@@ -18,7 +18,7 @@ const CustomQuestion = ({ title }) => {
     return (
         <div className="border border-solid p-3 rounded-[20px] mt-8 w-full flex flex-col items-center justify-center gap-5">
             <p className="text-lg font-bold">{title}</p>
-            <form onSubmit={handleSubmit} className="w-full flex flex-col items-center justify-center gap">
+            <form onSubmit={handleSubmit} className="w-full flex flex-col items-center justify-center gap-5">
                 <Textarea
                     className="w-[80%]"
                     placeholder="Type your question here..."

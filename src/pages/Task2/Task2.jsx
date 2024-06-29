@@ -23,7 +23,7 @@ const Task2 = () => {
                 <Loading />
                 :
                 <div className="flex flex-col md:flex-row gap-3 items-center lg:max-w-[70vw]">
-                    <div className="flex flex-col justify-center items-center">
+                    <div className="flex flex-col md:flex-row justify-center items-center">
                         <SpeedoMeter />
                         <h1 className="text-2xl font-bold text-center mb-5 text-primary">Message</h1>
 
@@ -41,7 +41,7 @@ const Task2 = () => {
 
                     </div>
 
-                    <Link to={'/home'}>
+                    <Link to={'/home'} className="block">
                         <Button className="w-[50vw] mt-8">
                             Go Back
                         </Button>

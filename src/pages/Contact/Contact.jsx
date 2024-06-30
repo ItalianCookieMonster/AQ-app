@@ -1,8 +1,12 @@
 const Contact = () => {
   return (
     <>
-      <div>Contact</div>
-      <a href="mailto:aqteam@inventedemail.com">Send us an email</a>
+      <a
+        className="text-accent text-blue-500 underline"
+        href="mailto:aqteam@inventedemail.com"
+      >
+        Send us an email
+      </a>
     </>
   );
 };

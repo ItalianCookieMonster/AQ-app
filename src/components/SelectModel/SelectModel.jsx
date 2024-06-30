@@ -19,7 +19,7 @@ const SelectModel = () => {
   return (
     <DropdownMenu className="absolute top-1right-1">
       <DropdownMenuTrigger>
-        <span className="mx-3">Select Model:</span>
+        <span className="mx-3">Select Model Provider:</span>
         <Button variant="outline">
           {currentModel}
           <ChevronDown />

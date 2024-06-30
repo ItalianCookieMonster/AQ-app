@@ -49,7 +49,7 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 142.4 71.8% 29.2%;
-    --text:  0 0% 100%;
+    --text: 0 0% 100%;
   }
 }
 
@@ -206,4 +206,17 @@ body {
   align-items: center;
 
   color: hsl(var(--text))
+}
+
+.sr-only {
+
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

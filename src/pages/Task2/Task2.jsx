@@ -10,12 +10,16 @@ import SpeedoMeter from "@/components/SpeedoMeter/SpeedoMeter";
 const Task2 = () => {
   const [loading, setLoading] = useState(true);
   const [userData, setUserData] = useState({});
+  const [userCity, setUserCity] = useState("");
+
   const [output, setOutput] = useState("");
   const [currentAirStatus, setCurrentAirStatus] = useState(undefined);
 
   useEffect(() => {
     const currentUserData = localStorage.getItem("user-data");
+    const currentUserCity = localStorage.getItem("user-city");
     setUserData(currentUserData ? JSON.parse(currentUserData) : {});
+    setUserCity(currentUserCity ? currentUserCity : {});
   }, []);
 
   const {
@@ -24,20 +28,20 @@ const Task2 = () => {
     // isFetching: isFetchingairQualityInfo,
     // refetch: refetchairQualityInfo,
   } = useQuery({
-    queryKey: ["airQualityInfo", userData],
+    queryKey: ["airQualityInfo", userData, userCity],
     queryFn: async () => {
       if (userData) {
         // const { city } = userData;
 
         const result = await getAirQualityInfo({
-          city: "Barcelona", // TODO: pending get city!!!!!
+          city: userCity,
           userParams: userData,
           question: "currentAirSituation",
         });
         return result;
       }
     },
-    enabled: !!userData,
+    enabled: !!userData && !!userCity,
     retry: 2,
   });
 

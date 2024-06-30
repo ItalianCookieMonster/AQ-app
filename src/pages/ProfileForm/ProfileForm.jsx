@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
+
 function ProfileForm() {
   const {
     register,
@@ -21,7 +22,7 @@ function ProfileForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-md mx-auto p-6 bg-white shadow-md rounded-md space-y-4"
+      className="max-w-md mx-auto p-6 bg- shadow-md rounded-md space-y-4"
     >
       <div className="form-item">
         <label
@@ -62,7 +63,7 @@ function ProfileForm() {
       </div>
 
       <div className="form-item">
-        <label className="block text-sm font-medium text-gray-700">
+        <label className="block text-sm font-medium text-primary">
           Fitness Level:
         </label>
         <div className="mt-1 space-y-2">
@@ -71,7 +72,7 @@ function ProfileForm() {
               type="radio"
               {...register("fitnessLevel", { required: true })}
               value="couch-potato"
-              className="form-radio h-4 w-4 text-indigo-600"
+              className="form-radio h-4 w-4 text-primary"
             />
             <span className="ml-2 text-sm text-gray-700">
               {`Couch Potato (I'm a pro at Netflix marathons!)`}
@@ -83,7 +84,7 @@ function ProfileForm() {
               type="radio"
               {...register("fitnessLevel", { required: true })}
               value="occasional-mover"
-              className="form-radio h-4 w-4 text-indigo-600"
+              className="form-radio h-4 w-4 text-primary"
             />
             <span className="ml-2 text-sm text-gray-700">
               Occasional Mover (I take the stairs sometimes!)
@@ -95,7 +96,7 @@ function ProfileForm() {
               type="radio"
               {...register("fitnessLevel", { required: true })}
               value="gym-rat"
-              className="form-radio h-4 w-4 text-indigo-600"
+              className="form-radio h-4 w-4 text-primary"
             />
             <span className="ml-2 text-sm text-gray-700">
               Gym Rat (I lift... my coffee mug every morning!)

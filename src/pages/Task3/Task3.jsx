@@ -64,10 +64,11 @@ const Task3 = () => {
     return (
         <div className="w-[80vw] flex flex-col items-center">
             {!whatIsUserDoingAtTheMoment && (
+
                 <CustomQuestion
-                    title="What are you doing right now?"
                     handleSubmitQuestion={handleSubmitQuestion}
                 />
+
             )}
 
             <div className="min-h-[300px]">

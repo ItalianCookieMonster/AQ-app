@@ -2,6 +2,7 @@
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "../ui/button";
 import { useState } from "react";
+import SelectModel from "../SelectModel/SelectModel";
 
 const CustomQuestion = ({ handleSubmitQuestion }) => {
     const [question, setQuestion] = useState("");
@@ -24,6 +25,8 @@ const CustomQuestion = ({ handleSubmitQuestion }) => {
     };
     return (
         <div className="p-3 rounded-[20px] mt-8 w-full flex flex-col items-center justify-center gap-5">
+            <h2 className="w-full text-lg font-medium lg:w-[60vw] max-w-[800px]">{`Hey! Just checking in to see what’s happening on your end. Your current activities could give us great clues on how to boost your air quality. Mind sharing what you're doingy`}</h2>
+
             <form onSubmit={handleSubmit} className="w-full flex flex-col items-center justify-center gap-5">
                 <Textarea
                     className="w-full md:w-[80%]"
@@ -33,6 +36,9 @@ const CustomQuestion = ({ handleSubmitQuestion }) => {
                     onKeyDown={handleKeyDown} />
                 <Button type="submit" className="block w-[80%]">Send message</Button>
             </form>
+
+
+            <SelectModel />
         </div>
     )
 }

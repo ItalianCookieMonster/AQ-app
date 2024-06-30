@@ -4,6 +4,9 @@ export const getAirQualityInfo = async ({
   question,
   whatIsUserDoingAtTheMoment,
 }) => {
+  // get saved model from local storage
+  const model = localStorage.getItem("model");
+
   // use fetch to call api endpoint
   try {
     const response = await fetch(
@@ -18,6 +21,7 @@ export const getAirQualityInfo = async ({
           question,
           userParams,
           whatIsUserDoingAtTheMoment,
+          model: model || "llama",
         }),
       }
     );

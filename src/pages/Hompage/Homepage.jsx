@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CityInputForm from "@/components/CityInputForm/CityInputForm";
 import Questions from "@/components/Questions/Questions";
+import SelectModel from "@/components/SelectModel/SelectModel";
 
 const Homepage = () => {
   const [city, setCity] = useState("");
@@ -11,12 +12,15 @@ const Homepage = () => {
   };
 
   return city === "" ? (
-    <CityInputForm
-      onSubmit={handleCitySubmit}
-      initialCity={city}
-      promptText="Which city would you like to check the air quality for? We're here to provide you with the latest updates."
-      className="bg-background border border-solid flex-col"
-    />
+    <>
+      <CityInputForm
+        onSubmit={handleCitySubmit}
+        initialCity={city}
+        promptText="Which city would you like to check the air quality for? We're here to provide you with the latest updates."
+        className="bg-background border border-solid flex-col"
+      />
+      <SelectModel />
+    </>
   ) : (
     <>
       <header className="mb-8 text-center max-w-[600px]">

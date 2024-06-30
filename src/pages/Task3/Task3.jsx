@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import TypingEffect from "@/components/TypingText/TypingText";
 import Loading from "@/components/Loading/Loading";
 import { MoveLeft } from "lucide-react";
+import MoreInfo from "@/components/MoreInfo/MoreInfo";
 
 const Task3 = () => {
     const [loading, setLoading] = useState(true);
@@ -99,10 +100,12 @@ const Task3 = () => {
                             </div>
                             <Link
                                 to={"/home"}
-                                className="border border-solid border-transparent justify-self-end hover:text-primary hover:border-primary rounded-[50%] p-4 mt-5"
-                            >
+                                className="border border-solid border-transparent justify-self-end hover:text-primary hover:border-primary rounded-[50%] p-4 mt-5">
                                 <MoveLeft />
                             </Link>
+                            
+                            <MoreInfo/>
+                            
                         </div>
                     )}
                 </div>

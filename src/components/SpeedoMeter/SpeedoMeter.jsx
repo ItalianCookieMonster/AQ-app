@@ -75,6 +75,7 @@ const SpeedoMeter = ({ currentAirStatus }) => {
       className="mx-auto"
       width={300}
       height={300}
+      maxSegmentLabels={0}
     />
   );
 };

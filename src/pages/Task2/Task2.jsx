@@ -22,10 +22,13 @@ const Task2 = () => {
             {loading ?
                 <Loading />
                 :
-                <div className="flex flex-col md:flex-row gap-3 items-center lg:max-w-[70vw]">
-                    <div className="flex flex-col md:flex-row justify-center items-center">
-                        <SpeedoMeter />
-                        <h1 className="text-2xl font-bold text-center mb-5 text-primary">Message</h1>
+                <div className="flex flex-col gap-7 lg:max-w-[70vw] justify-center" >
+                    <h1 className="text-2xl font-bold text-center mb-5 text-primary">Message</h1>
+
+                    <div className="flex-col md:flex-row justify-center">
+                        <div className="flex justify-center items-center w-full">
+                            <SpeedoMeter />
+                        </div>
 
                         <p className="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
                             molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
@@ -41,8 +44,8 @@ const Task2 = () => {
 
                     </div>
 
-                    <Link to={'/home'} className="block">
-                        <Button className="w-[50vw] mt-8">
+                    <Link to={'/home'} className="flex items-center justify-center">
+                        <Button className="w-[50vw] lg:w-[30vw] mt-8">
                             Go Back
                         </Button>
                     </Link>

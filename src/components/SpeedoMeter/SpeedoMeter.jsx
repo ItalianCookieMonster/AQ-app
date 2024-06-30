@@ -59,6 +59,9 @@ const SpeedoMeter = () => {
             currentValueText={speedometerText}
             needleTransitionDuration={4000}
             needleTransition="easeElastic"
+            className="mx-auto"
+            width={300}
+            height={300}
         />
 
 

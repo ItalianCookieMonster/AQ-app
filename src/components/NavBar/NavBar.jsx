@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import ModeToggle from "../ModeToggle/ModeToggle";
+import Logout from "../Logout/Logout";
 
 const NavBar = () => {
     return (
@@ -39,8 +40,9 @@ const NavBar = () => {
                     APIDoc
                 </NavLink>
             </div>
-            <div className="flex-1 flex justify-end">
+            <div className="flex-1 flex justify-end gap-2">
                 <ModeToggle />
+                <Logout/>
             </div>
         </nav>
     );

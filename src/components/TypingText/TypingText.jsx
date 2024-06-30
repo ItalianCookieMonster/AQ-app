@@ -1,30 +1,33 @@
-import { useState, useEffect } from 'react';
-import './TypingText.css';
+import { useState, useEffect } from "react";
 
-const TypingEffect = () => {
-    const [displayText, setDisplayText] = useState('');
-    const stringToTest = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxim mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum`;
+// eslint-disable-next-line react/prop-types
+const TypingEffect = ({ textFromOutput }) => {
+  const [text, setText] = useState(textFromOutput);
+  const [displayText, setDisplayText] = useState("");
 
-    useEffect(() => {
-        let index = 0;
-        const intervalId = setInterval(() => {
-            if (index < stringToTest.length) {
-                setDisplayText(prev => prev + stringToTest.charAt(index));
-                index++;
-            } else {
-                clearInterval(intervalId);
-            }
-        }, 50); 
+  useEffect(() => {
+    if (textFromOutput) {
+      setTimeout(() => {
+        setText(textFromOutput);
+      }, 200);
+    }
+  }, [textFromOutput]);
 
-        return () => clearInterval(intervalId);
-    }, []); 
+  useEffect(() => {
+    let index = 0;
+    const intervalId = setInterval(() => {
+      if (index < text.length) {
+        setDisplayText((prev) => prev + text.charAt(index));
+        index++;
+      } else {
+        clearInterval(intervalId);
+      }
+    }, 50);
 
-    return (
-        <div className="typing-effect">
-            {displayText}
-        </div>
-    );
+    return () => clearInterval(intervalId);
+  }, [text]);
+
+  return <div className="typing-effect">{displayText}</div>;
 };
 
 export default TypingEffect;
-

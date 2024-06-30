@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import { Textarea } from "@/components/ui/textarea"
-import { Button } from "../ui/button"
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "../ui/button";
 import { useState } from "react";
 
-const CustomQuestion = () => {
+const CustomQuestion = ({ handleSubmitQuestion }) => {
     const [question, setQuestion] = useState("");
 
     const handleQuestionChange = (event) => {
@@ -19,7 +19,7 @@ const CustomQuestion = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(question);
+        handleSubmitQuestion(question);
 
     };
     return (

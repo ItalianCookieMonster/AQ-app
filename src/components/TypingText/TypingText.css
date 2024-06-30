@@ -1,0 +1,30 @@
+.typing-effect {
+    width: 60vw;              
+    min-width: 250px;        
+    max-width: 800px;        
+    margin: auto;            
+    white-space: pre-wrap;    
+    word-wrap: break-word;   
+    overflow-wrap: break-word;
+    line-height: 2em;     
+    text-align: justify;    
+}
+
+@media (max-width: 768px) {
+    .typing-effect {
+        width: 80vw;   
+    }
+}
+
+.typing-effect::after {
+    content: '|';
+    position: absolute;
+    right: 0;
+    animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}

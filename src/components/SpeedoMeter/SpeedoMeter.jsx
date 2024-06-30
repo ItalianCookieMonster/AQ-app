@@ -29,7 +29,7 @@ function getSpeedometerValue(category) {
             break;
         case 'Hazardous':
             speedometerValue = 500;
-            speedometerText = 'Hazard';
+            speedometerText = 'Hazardous';
             break;
         default:
             speedometerValue = 0;
@@ -45,7 +45,7 @@ function getSpeedometerValue(category) {
 
 const SpeedoMeter = () => {
 
-    let { speedometerValue, speedometerText } = getSpeedometerValue("Good");
+    let { speedometerValue, speedometerText } = getSpeedometerValue("Hazardous");
     return (
 
         <ReactSpeedometer

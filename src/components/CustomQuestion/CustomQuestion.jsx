@@ -3,7 +3,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Button } from "../ui/button"
 import { useState } from "react";
 
-const CustomQuestion = ({ title }) => {
+const CustomQuestion = () => {
     const [question, setQuestion] = useState("");
 
     const handleQuestionChange = (event) => {
@@ -16,11 +16,10 @@ const CustomQuestion = ({ title }) => {
 
     };
     return (
-        <div className="border border-solid p-3 rounded-[20px] mt-8 w-full flex flex-col items-center justify-center gap-5">
-            <p className="text-lg font-bold">{title}</p>
+        <div className="p-3 rounded-[20px] mt-8 w-full flex flex-col items-center justify-center gap-5">
             <form onSubmit={handleSubmit} className="w-full flex flex-col items-center justify-center gap-5">
                 <Textarea
-                    className="w-[80%]"
+                    className="w-full md:w-[80%]"
                     placeholder="Type your question here..."
                     value={question}
                     onChange={handleQuestionChange} />

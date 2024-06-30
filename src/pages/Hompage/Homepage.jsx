@@ -4,12 +4,14 @@ import Questions from "@/components/Questions/Questions";
 import SelectModel from "@/components/SelectModel/SelectModel";
 
 const Homepage = () => {
-    const [city, setCity] = useState("");
+    const prevCity = localStorage.getItem("user-city");
+    const [city, setCity] = useState(prevCity || "");
+
 
     const handleCitySubmit = (newCity) => {
         setCity(newCity);
-        console.log(newCity);
     };
+
 
     return city === "" ? (
         <div className="flex flex-col items-center justify-center gap-5">

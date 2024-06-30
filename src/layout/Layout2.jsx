@@ -7,7 +7,7 @@ const Layout2 = () => {
     return (
         <>
             <NavBar />
-            <main className="w-[90vw] mx-auto min-h-[70vh] flex flex-col justify-between items-center my-8">
+            <main className="w-[90vw] mx-auto min-h-[70vh] flex flex-col justify-between items-center my-4">
                 <Outlet />
             </main>
             <Footer />

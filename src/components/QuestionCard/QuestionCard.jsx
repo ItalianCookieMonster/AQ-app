@@ -24,7 +24,7 @@ const QuestionCard = ({ question }) => {
                             <Flower />
                 }
                 <CardTitle>
-                    Task {question.id}
+                    Question {question.id}
                 </CardTitle>
             </CardHeader>
             <CardContent>

@@ -1,4 +1,6 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
+import { PacmanLoader } from "react-spinners";
 
 
 const phrases = [
@@ -28,21 +30,39 @@ const phrases = [
 
 ]
 
+const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+};
 
-const Loading = () => {
+
+
+const Loading = ({ loading }) => {
     const [currentPhrase, setCurrentPhrase] = useState(0);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentPhrase(prevPhrase => (prevPhrase + 1) % phrases.length);
-        }, 3000); 
+        }, 3000);
 
-        return () => clearInterval(intervalId); 
+        return () => clearInterval(intervalId);
     }, []);
 
     return (
-        <div className="loader-container h-[50vh] flex flex-column items-center text-center px-10">
-            <p className="animate[fade-in-out] text-xl">{phrases[currentPhrase].phrase}</p>
+        <div className="flex flex-col justify-center items-center gap-4">
+
+            <div className="text-center px-10">
+                <p className="animate[fade-in-out] text-xl">{phrases[currentPhrase].phrase}</p>
+            </div>
+
+            <PacmanLoader
+                cssOverride={override}
+                loading={loading}
+                color={'hsl(142.1 76.2% 36.3%)'}
+            />
+
+
         </div>
     );
 }

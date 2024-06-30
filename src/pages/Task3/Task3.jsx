@@ -12,95 +12,95 @@ import Loading from "@/components/Loading/Loading";
 import { MoveLeft } from "lucide-react";
 
 const Task3 = () => {
-  const [loading, setLoading] = useState(true);
-  const [userData, setUserData] = useState({});
-  const [output, setOutput] = useState("");
-  const [whatIsUserDoingAtTheMoment, setWhatIsUserDoingAtTheMoment] =
-    useState("");
-  const [areaID, setAreaID] = useState(undefined);
+    const [loading, setLoading] = useState(true);
+    const [userData, setUserData] = useState({});
+    const [output, setOutput] = useState("");
+    const [whatIsUserDoingAtTheMoment, setWhatIsUserDoingAtTheMoment] =
+        useState("");
+    const [areaID, setAreaID] = useState(undefined);
 
-  // Load user data from local storage
-  useEffect(() => {
-    const currentUserData = localStorage.getItem("user-data");
-    setUserData(currentUserData ? JSON.parse(currentUserData) : {});
-  }, []);
+    // Load user data from local storage
+    useEffect(() => {
+        const currentUserData = localStorage.getItem("user-data");
+        setUserData(currentUserData ? JSON.parse(currentUserData) : {});
+    }, []);
 
-  // Fetch air quality info
-  const { data: airQualityInfoData } = useQuery({
-    queryKey: ["airQualityInfo", userData, whatIsUserDoingAtTheMoment],
-    queryFn: async () => {
-      if (userData && whatIsUserDoingAtTheMoment) {
-        const result = await getAirQualityInfo({
-          city: "Barcelona", // TODO: pending get city!!!!!
-          userParams: userData,
-          question: "whatToDoRn",
-          whatIsUserDoingAtTheMoment,
-        });
-        return result;
-      }
-    },
-    enabled: !!userData && !!whatIsUserDoingAtTheMoment,
-    retry: 2,
-  });
+    // Fetch air quality info
+    const { data: airQualityInfoData } = useQuery({
+        queryKey: ["airQualityInfo", userData, whatIsUserDoingAtTheMoment],
+        queryFn: async () => {
+            if (userData && whatIsUserDoingAtTheMoment) {
+                const result = await getAirQualityInfo({
+                    city: "Barcelona", // TODO: pending get city!!!!!
+                    userParams: userData,
+                    question: "whatToDoRn",
+                    whatIsUserDoingAtTheMoment,
+                });
+                return result;
+            }
+        },
+        enabled: !!userData && !!whatIsUserDoingAtTheMoment,
+        retry: 2,
+    });
 
-  // Handle air quality info data
-  useEffect(() => {
-    if (airQualityInfoData && airQualityInfoData.questionOutput) {
-      const { output, areaID } = airQualityInfoData.questionOutput;
+    // Handle air quality info data
+    useEffect(() => {
+        if (airQualityInfoData && airQualityInfoData.questionOutput) {
+            const { output, areaID } = airQualityInfoData.questionOutput;
 
-      const enhancedOutput = enhanceAirOutput(output);
+            const enhancedOutput = enhanceAirOutput(output);
 
-      setOutput(enhancedOutput);
-      setAreaID(areaID);
+            setOutput(enhancedOutput);
+            setAreaID(areaID);
 
-      setLoading(false);
-    }
-  }, [airQualityInfoData]);
+            setLoading(false);
+        }
+    }, [airQualityInfoData]);
 
-  const handleSubmitQuestion = (question) => {
-    setWhatIsUserDoingAtTheMoment(question);
-  };
+    const handleSubmitQuestion = (question) => {
+        setWhatIsUserDoingAtTheMoment(question);
+    };
 
-  return (
-    <div className="w-[80vw] flex flex-col items-center">
-      {!whatIsUserDoingAtTheMoment && (
-        <CustomQuestion
-          title="What are you doing right now?"
-          handleSubmitQuestion={handleSubmitQuestion}
-        />
-      )}
+    return (
+        <div className="w-[80vw] flex flex-col items-center">
+            {!whatIsUserDoingAtTheMoment && (
+                <CustomQuestion
+                    title="What are you doing right now?"
+                    handleSubmitQuestion={handleSubmitQuestion}
+                />
+            )}
 
-      <div className="min-h-[300px]">
-        {!whatIsUserDoingAtTheMoment ? (
-          <></>
-        ) : loading ? (
-          <Loading />
-        ) : (
-          <div className="flex flex-col justify-center items-center">
-            <h1 className="text-2xl font-bold text-center mb-5 text-primary">
-              Message
-            </h1>
-            <div className="flex flex-col md:flex-row gap-3 items-center lg:max-w-[70vw]">
-              {areaID}
-              <img
-                src="/images/ok_run.png"
-                alt="image of a guy running"
-                className="max-h-[300px] md:h-[500px]"
-              />
-              <TypingEffect textFromOutput={output} />
+            <div className="min-h-[300px]">
+                {!whatIsUserDoingAtTheMoment ? (
+                    <></>
+                ) : loading ? (
+                    <Loading />
+                ) : (
+                    <div className="flex flex-col justify-center items-center">
+                        <h1 className="text-2xl font-bold text-center mb-5 text-primary">
+                            Message
+                        </h1>
+                        <div className="flex flex-col md:flex-row gap-3 items-center lg:max-w-[70vw]">
+                            {areaID}
+                            <img
+                                src="/images/ok_run.png"
+                                alt="image of a guy running"
+                                className="max-h-[300px] md:h-[500px]"
+                            />
+                            <TypingEffect textFromOutput={output} />
+                        </div>
+
+                        <Link
+                            to={"/home"}
+                            className=" border border-solid border-transparent justify-self-end hover:text-primary hover:border-primary rounded-[50%] p-4"
+                        >
+                            <MoveLeft />
+                        </Link>
+                    </div>
+                )}
             </div>
-
-            <Link
-              to={"/home"}
-              className=" border border-solid border-transparent justify-self-end hover:text-primary hover:border-primary rounded-[50%] p-4"
-            >
-              <MoveLeft />
-            </Link>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+        </div>
+    );
 };
 
 export default Task3;

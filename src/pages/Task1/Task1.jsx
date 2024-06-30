@@ -67,17 +67,12 @@ const Task1 = () => {
       </h1>
       <div className="flex flex-col md:flex-row gap-3 items-center lg:max-w-[70vw]">
         <img
-          src="/images/ok_run.png"
+          src={isGood ? "/images/ok_run.png" : "/images/no_run.png"}
           alt="image of a guy running"
           className="max-h-[300px] md:h-[500px]"
         />
         <p className="text-center">{output}</p>
       </div>
-      {isGood ? (
-        <p className="text-center text-green-500">Good</p>
-      ) : (
-        <p className="text-center text-red-500">Bad</p>
-      )}
 
       <Link to={"/home"}>
         <Button className="w-[50vw] mt-8">Go Back</Button>

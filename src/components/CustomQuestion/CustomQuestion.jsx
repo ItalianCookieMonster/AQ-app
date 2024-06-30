@@ -10,6 +10,13 @@ const CustomQuestion = () => {
         setQuestion(event.target.value);
     };
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
+            handleSubmit(event);
+        }
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(question);
@@ -22,10 +29,12 @@ const CustomQuestion = () => {
                     className="w-full md:w-[80%]"
                     placeholder="Type your question here..."
                     value={question}
-                    onChange={handleQuestionChange} />
+                    onChange={handleQuestionChange}
+                    onKeyDown={handleKeyDown} />
                 <Button type="submit" className="block w-[80%]">Send message</Button>
             </form>
         </div>
     )
 }
+
 export default CustomQuestion

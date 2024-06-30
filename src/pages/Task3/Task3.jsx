@@ -14,6 +14,7 @@ import { MoveLeft } from "lucide-react";
 const Task3 = () => {
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState({});
+    const [userCity, setUserCity] = useState("");
     const [output, setOutput] = useState("");
     const [whatIsUserDoingAtTheMoment, setWhatIsUserDoingAtTheMoment] =
         useState("");
@@ -22,16 +23,23 @@ const Task3 = () => {
     // Load user data from local storage
     useEffect(() => {
         const currentUserData = localStorage.getItem("user-data");
+        const currentUserCity = localStorage.getItem("user-city");
         setUserData(currentUserData ? JSON.parse(currentUserData) : {});
+        setUserCity(currentUserCity ? currentUserCity : {});
     }, []);
 
     // Fetch air quality info
     const { data: airQualityInfoData } = useQuery({
-        queryKey: ["airQualityInfo", userData, whatIsUserDoingAtTheMoment],
+        queryKey: [
+            "airQualityInfo",
+            userData,
+            userCity,
+            whatIsUserDoingAtTheMoment,
+        ],
         queryFn: async () => {
             if (userData && whatIsUserDoingAtTheMoment) {
                 const result = await getAirQualityInfo({
-                    city: "Barcelona", // TODO: pending get city!!!!!
+                    city: userCity,
                     userParams: userData,
                     question: "whatToDoRn",
                     whatIsUserDoingAtTheMoment,
@@ -39,7 +47,7 @@ const Task3 = () => {
                 return result;
             }
         },
-        enabled: !!userData && !!whatIsUserDoingAtTheMoment,
+        enabled: !!userData && !!userCity && !!whatIsUserDoingAtTheMoment,
         retry: 2,
     });
 

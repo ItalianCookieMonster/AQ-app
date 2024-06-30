@@ -6,9 +6,10 @@ import { getAirQualityInfo } from "../../api/getAirQualityInfo";
 import { enhanceAirOutput } from "../../utils/tansformOutput";
 
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import TypingEffect from "@/components/TypingText/TypingText";
 import Loading from "@/components/Loading/Loading";
+
+import { MoveLeft } from "lucide-react";
 
 const Task3 = () => {
   const [loading, setLoading] = useState(true);
@@ -89,8 +90,11 @@ const Task3 = () => {
               <TypingEffect textFromOutput={output} />
             </div>
 
-            <Link to={"/home"}>
-              <Button className="w-[50vw] mt-8">Go Back</Button>
+            <Link
+              to={"/home"}
+              className=" border border-solid border-transparent justify-self-end hover:text-primary hover:border-primary rounded-[50%] p-4"
+            >
+              <MoveLeft />
             </Link>
           </div>
         )}

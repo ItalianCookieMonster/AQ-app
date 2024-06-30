@@ -7,7 +7,9 @@ const TypingEffect = ({ textFromOutput }) => {
 
   useEffect(() => {
     if (textFromOutput) {
-      setText(textFromOutput);
+      setTimeout(() => {
+        setText(textFromOutput);
+      }, 200);
     }
   }, [textFromOutput]);
 
